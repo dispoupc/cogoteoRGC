@@ -132,7 +132,7 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
       <div class="loginbox">
         <div class="field"><label>Usuario</label><input id="loginUser" placeholder="tu-correo@dominio.com"></div>
         <div class="field"><label>Contraseña</label><input id="loginPass" type="password" ></div>
-        <div class="actions"><button class="primary" onclick="loginDemo()">Iniciar sesión</button></div>
+        <div class="actions"><button class="primary" onclick="realLogin()">Iniciar sesión</button></div>
         <div class="note">Acceso protegido con Supabase Auth. Solo usuarios autorizados pueden publicar, editar o borrar contenido.</div>
       </div>
     </div>
@@ -145,7 +145,7 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
         <button class="admin-tab" onclick="tabAdmin('teamsPane',this)">Teams</button>
         <button class="admin-tab" onclick="tabAdmin('postsPane',this)">Publicaciones</button>
         <button class="admin-tab" onclick="tabAdmin('coverPane',this)">Portada</button>
-        <button class="admin-tab" onclick="logoutDemo()">Cerrar sesión</button>
+        <button class="admin-tab" onclick="realLogout()">Cerrar sesión</button>
       </div>
 
       <div class="admin-pane active" id="publish">
@@ -191,7 +191,7 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
 
         <div class="actions">
           <button onclick="closeAdmin()">Cancelar</button>
-          <button class="primary" onclick="publishDemo()">Publicar victoria</button>
+          <button class="primary" onclick="publishReal()">Publicar victoria</button>
         </div>
       </div>
 
@@ -205,7 +205,7 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
 
         <div class="actions">
           <button id="cancelTeamEdit" style="display:none" onclick="cancelTeamEdit()">Cancelar edición</button>
-          <button class="primary" id="saveTeamBtn" onclick="saveTeamDemo()">+ Crear team</button>
+          <button class="primary" id="saveTeamBtn" onclick="saveTeamReal()">+ Crear team</button>
         </div>
 
         <div class="note">Los nicks se separan por comas. Ejemplo: <b>PEPE, JORGE</b> crea dos nicks independientes que luego podrás marcar al publicar.</div>
@@ -659,7 +659,7 @@ async function loadAllFromSupabase(){
     sb.from('posts').select('*').order('played_at',{ascending:false}),
     sb.from('media').select('*').order('sort_order',{ascending:true})
   ]);
-  if(te||pe||me) return toastMsg('Error cargando datos de Supabase.','error');
+  if(te||pe||me){console.error('Load errors',{teams:te,posts:pe,media:me});return toastMsg('Error cargando datos: '+(te?.message||pe?.message||me?.message||'desconocido'),'error');}
 
   teams=(td||[]).map(t=>({
     id:t.id,
@@ -751,23 +751,58 @@ async function publishReal(){
 
 async function saveTeamReal(){
   if(!await ensureBackendReady()) return;
-  const name=newTeam.value.trim();
+
+  const nameEl=document.getElementById('newTeam');
+  const playersEl=document.getElementById('newTeamPlayers');
+  const descEl=document.getElementById('newTeamDesc');
+  const editEl=document.getElementById('editingTeamId');
+  const saveBtn=document.getElementById('saveTeamBtn');
+
+  const name=(nameEl?.value||'').trim();
   if(!name) return toastMsg('Escribe un nombre para el team.','error');
+
+  const {data:{session},error:sessionError}=await sb.auth.getSession();
+  if(sessionError || !session){
+    return toastMsg('Tu sesión ADMIN no está activa. Cierra sesión e ingresa nuevamente.','error');
+  }
+
+  const {data:profile,error:profileError}=await sb
+    .from('profiles')
+    .select('is_admin')
+    .eq('id',session.user.id)
+    .single();
+
+  if(profileError || !profile?.is_admin){
+    return toastMsg('Esta cuenta no tiene permisos is_admin=true.','error');
+  }
 
   const payload={
     name,
-    players:splitNicks(newTeamPlayers.value),
-    description:newTeamDesc.value.trim()||'Team registrado.'
+    players:splitNicks(playersEl?.value||''),
+    description:(descEl?.value||'').trim()||'Team registrado.'
   };
-  const id=Number(editingTeamId.value);
 
-  const q=id ? sb.from('teams').update(payload).eq('id',id) : sb.from('teams').insert(payload);
-  const {error}=await q;
-  if(error) return toastMsg('No se pudo guardar el team: '+error.message,'error');
+  const id=Number(editEl?.value||0);
+  if(saveBtn){saveBtn.disabled=true;saveBtn.textContent='Guardando...';}
+  toastMsg('Guardando team...','ok');
+
+  let result;
+  if(id){
+    result=await sb.from('teams').update(payload).eq('id',id).select().single();
+  }else{
+    result=await sb.from('teams').insert(payload).select().single();
+  }
+
+  if(saveBtn){saveBtn.disabled=false;saveBtn.textContent=id?'Guardar cambios':'+ Crear team';}
+
+  if(result.error){
+    console.error('Supabase teams write error:',result.error);
+    return toastMsg('No se pudo guardar: '+result.error.message,'error');
+  }
 
   cancelTeamEdit();
   await loadAllFromSupabase();
-  toastMsg(id?'Team actualizado.':'Team creado.','ok');
+  toastMsg(id?'Team actualizado correctamente.':'Team creado correctamente.','ok');
 }
 
 async function deleteTeamReal(id){
@@ -820,10 +855,6 @@ async function initSupabaseAuth(){
 }
 
 /* Replace demo handlers with real backend handlers */
-window.loginDemo=realLogin;
-window.logoutDemo=realLogout;
-window.publishDemo=publishReal;
-window.saveTeamDemo=saveTeamReal;
 window.deleteTeamDemo=deleteTeamReal;
 window.deletePostDemo=deletePostReal;
 
