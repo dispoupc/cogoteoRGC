@@ -26,7 +26,7 @@ h1 em{font-style:normal;color:#e55148} .copy p{font-size:16px;line-height:1.7;co
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #252b32;border-top:0} .stat{text-align:center;padding:19px;background:#0b0e12;border-right:1px solid #252b32} .stat:last-child{border:0} .stat b{font:700 27px Georgia,serif;color:#e4d5af;display:block} .stat span{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#717a86}
 section{padding:58px 0} .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #272d34;padding-bottom:15px;margin-bottom:25px;gap:20px} .head h2{font:800 30px Georgia,serif;text-transform:uppercase;margin:0} .head h2::before{content:"";display:inline-block;width:5px;height:31px;background:#d94a42;margin-right:14px;vertical-align:-5px} .head p{margin:0;color:#7e8897;font-size:13px}
 .teamgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .team{border:1px solid #2a3038;background:linear-gradient(#14191f,#0d1115);overflow:hidden}
-.gallery{height:205px;position:relative;background:#0a0d11;overflow:hidden} .gslide{position:absolute;inset:0;opacity:0;transition:opacity .95s ease} .gslide.active{opacity:1} .gslide img{width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.85)} .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#161b22,#0b0e12);color:#4e5864;font-weight:700;font-size:11px;letter-spacing:1.7px}
+.gallery{height:205px;position:relative;background:#0a0d11;overflow:hidden} .gslide{position:absolute;inset:0;opacity:0;transition:.35s ease} .gslide.active{opacity:1} .gslide img{width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.85)} .placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#161b22,#0b0e12);color:#4e5864;font-weight:700;font-size:11px;letter-spacing:1.7px}
 .gfade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,8,11,.96),transparent 55%)}
 .pill{position:absolute;left:12px;top:12px;background:#8c2723;border:1px solid #c24640;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:1px;z-index:3} .gctrl{position:absolute;right:10px;bottom:10px;display:flex;gap:5px;z-index:4} .gctrl button{width:29px;height:29px;padding:0;background:rgba(7,9,12,.78);border:1px solid #3b434e;color:#fff;cursor:pointer}
 .tc{padding:16px 17px 18px} .teamtop{display:flex;justify-content:space-between;gap:10px;align-items:center} .teamtop h3{font:700 21px Georgia,serif;margin:0} .record{color:#67d37b;font-weight:800;font-size:12px} .meta{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#727c89;margin:7px 0 11px} .tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px} .tag{font-size:10px;border:1px solid #303741;background:#171c22;color:#bec5cf;padding:5px 7px} .desc{font-size:12px;line-height:1.55;color:#929ca9} .teamfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;border-top:1px solid #272d35;padding-top:12px} .teamfoot span{font-size:11px;color:#7d8794} .teamfoot button{font-size:10px;text-transform:uppercase;letter-spacing:1px;background:#171d23;border:1px solid #343d48;color:#d2d8df;padding:8px 10px;cursor:pointer}
@@ -74,23 +74,12 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
 .toast button{border:1px solid #3a4651;background:#171d23;color:#dfe4e8;padding:7px 8px;cursor:pointer;font:800 9px Arial,sans-serif}
 @keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-
-/* V6 — ADMIN preciso, portada de team y transiciones suaves */
-.admin-mode-banner{grid-column:1/-1;border:1px solid #33404b;background:#0b1116;padding:10px 12px;color:#9ca8b5;font-size:11px;line-height:1.45}
-.admin-mode-banner b{color:#f0e8d8}.admin-mode-banner.editing{border-left:4px solid #d8b45f;background:#13130d}
-.actions button:disabled,.admin-tab:disabled,.editbtn:disabled,.danger:disabled{opacity:.5;cursor:not-allowed}
-.media-select-note{grid-column:1/-1;margin-top:2px;color:#9aa5b2;font-size:10px;line-height:1.5}
-.media-editor{grid-column:1/-1;display:grid;gap:10px}.media-editor-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#8a95a1;margin-top:4px}
-.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:9px}
-.media-card{position:relative;border:1px solid #303945;background:#0a0e12;padding:7px;min-width:0}.media-card.is-cover{border-color:#d8b45f;box-shadow:0 0 0 1px rgba(216,180,95,.18) inset}
-.media-thumb{height:88px;background:#050709;overflow:hidden;display:grid;place-items:center}.media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:cover}.media-thumb video{pointer-events:none}
-.media-card-foot{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:7px;font-size:9px;color:#7e8996}.cover-choice{display:flex;align-items:center;gap:5px;color:#d9c68f;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:.4px}.cover-choice input{width:auto}
-.media-badge{position:absolute;top:12px;left:12px;background:#8b6a24;color:#fff6d8;border:1px solid #d8b45f;padding:4px 6px;font-size:8px;font-weight:900;letter-spacing:.8px;z-index:4}
-.post-edit-actions{display:flex;gap:6px;align-items:center}.post-edit-actions button{white-space:nowrap}
-.confirm-modal{z-index:550}.confirm-box{width:min(430px,100%);margin:15vh auto 0;background:#10151b;border:1px solid #3b4551;padding:21px;box-shadow:0 30px 80px rgba(0,0,0,.65)}.confirm-box h3{margin:0 0 8px;font:700 21px Georgia,serif}.confirm-box p{margin:0;color:#929daa;font-size:12px;line-height:1.6}.confirm-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.confirm-actions button{padding:9px 12px;border:1px solid #3b4550;background:#171d23;color:#e1e5e9;cursor:pointer}.confirm-actions .confirm-danger{background:#7a211d;border-color:#b13c36}
-.admin-progress{display:none;margin:10px 0 0;border:1px solid #3a4651;background:#0c1217;padding:10px 12px;color:#b7c0ca;font-size:11px}.admin-progress.show{display:block}.admin-progress.ok{border-left:4px solid #50c878}.admin-progress.err{border-left:4px solid #d94a41}.admin-progress.busy{border-left:4px solid #d8b45f}
-
 @media(max-width:850px){.navlinks{display:none}.hero{height:500px}h1{font-size:43px}.heroimg{width:125%;right:-30%;object-position:65% center}.stats{grid-template-columns:1fr 1fr}.teamgrid{grid-template-columns:1fr}.match{grid-template-columns:1fr}.mact{justify-self:start}.head{align-items:flex-start;flex-direction:column}}
+
+.pv{position:relative;cursor:pointer}.pv.primary-selected{outline:2px solid #d8b45f;box-shadow:0 0 0 2px rgba(216,180,95,.18)}
+.pv.primary-selected:after{content:"PRINCIPAL";position:absolute;left:5px;top:5px;background:#d8b45f;color:#111;padding:3px 5px;font:800 8px Arial,sans-serif;letter-spacing:.7px}
+.gslide{transition:opacity .9s ease}
+button[disabled]{opacity:.55;cursor:not-allowed}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -157,18 +146,15 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
       <h3>Administración</h3>
 
       <div class="admin-tabs">
-        <button class="admin-tab active" id="publishTabBtn" onclick="startNewPost(this)">+ Publicar</button>
+        <button class="admin-tab active" onclick="tabAdmin('publish',this)">+ Publicar</button>
         <button class="admin-tab" onclick="tabAdmin('teamsPane',this)">Teams</button>
         <button class="admin-tab" onclick="tabAdmin('postsPane',this)">Publicaciones</button>
         <button class="admin-tab" onclick="tabAdmin('coverPane',this)">Portada</button>
         <button class="admin-tab" onclick="realLogout()">Cerrar sesión</button>
       </div>
 
-      <div class="admin-pane active" id="publish">
+      <div class="admin-pane active" id="publish"><input id="editingPostId" type="hidden">
         <div class="adminbox">
-          <input id="editingPostId" type="hidden">
-          <div id="publishModeNote" class="admin-mode-banner"><b>Nueva publicación</b><br>Completa los datos, adjunta evidencias y elige la foto que aparecerá primero en TEAMS COGOTEADOS.</div>
-
           <div class="field">
             <label>Team</label>
             <select id="pTeam" onchange="syncPlayerOptions()"></select>
@@ -203,25 +189,14 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
           <div class="field full">
             <label>Fotos / mini videos</label>
             <input id="pFiles" type="file" multiple accept="image/*,video/mp4,video/webm">
-            <div class="note">Puedes subir varias fotos y mini videos de hasta 30 s. Los clips se reproducen <b>sin audio</b>. Marca una <b>FOTO PRINCIPAL</b>: será la primera imagen de la tarjeta del team.</div>
+            <div class="note">Puedes subir varias fotos y mini videos. En esta demo los videos se aceptan hasta 30 s y se reproducen <b>sin audio</b>.</div>
+            <div id="previews" class="previews"></div><div id="primaryPicker" class="note" style="display:none">Haz clic en una miniatura para marcarla como <b>PRINCIPAL</b>.</div>
           </div>
-
-          <div id="existingMediaEditor" class="media-editor" style="display:none">
-            <div class="media-editor-title">Archivos ya publicados</div>
-            <div id="existingMediaGrid" class="media-grid"></div>
-          </div>
-          <div id="newMediaEditor" class="media-editor" style="display:none">
-            <div class="media-editor-title">Nuevos archivos</div>
-            <div id="previews" class="media-grid"></div>
-          </div>
-          <div class="media-select-note">La portada puede ser una imagen existente o una imagen nueva. Si no marcas ninguna, se usará automáticamente la primera foto disponible.</div>
         </div>
 
-        <div id="adminProgress" class="admin-progress"></div>
         <div class="actions">
-          <button id="cancelPostEditBtn" style="display:none" onclick="cancelPostEdit()">Cancelar edición</button>
-          <button onclick="closeAdmin()">Cerrar</button>
-          <button id="publishBtn" class="primary" onclick="publishReal()">Publicar victoria</button>
+          <button onclick="closeAdmin()">Cancelar</button>
+          <button class="primary" onclick="publishReal()">Publicar victoria</button>
         </div>
       </div>
 
@@ -234,7 +209,7 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
         </div>
 
         <div class="actions">
-          <button id="cancelTeamEdit" style="display:none" onclick="cancelTeamEdit()">Cancelar edición</button>
+          <button id="cancelTeamEditBtn" style="display:none" onclick="cancelTeamEdit()">Cancelar edición</button>
           <button class="primary" id="saveTeamBtn" onclick="saveTeamReal()">+ Crear team</button>
         </div>
 
@@ -265,18 +240,6 @@ footer{padding:32px 0;border-top:1px solid #252b31;color:#67717e;font-size:11px;
 </div>
 
 
-
-<div class="modal confirm-modal" id="confirmModal">
-  <div class="confirm-box">
-    <h3 id="confirmTitle">Confirmar acción</h3>
-    <p id="confirmMessage">¿Deseas continuar?</p>
-    <div class="confirm-actions">
-      <button id="confirmCancelBtn">Cancelar</button>
-      <button id="confirmOkBtn" class="confirm-danger">Confirmar</button>
-    </div>
-  </div>
-</div>
-
 <div id="toastStack" class="toast-stack"></div>
 
 <script>
@@ -294,22 +257,16 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const nowTs=Date.now();
 const dayMs=24*60*60*1000;
 
-let teams=[
- {id:1,name:'Team Example',players:['PIERO','EZMID','CHILLINBOY'],desc:'Party recurrente. Historial de resultados y evidencias.',createdAt:nowTs-10*dayMs},
- {id:2,name:'Night Stack',players:['PLAYER-X','MIDKING','SUP-5'],desc:'Team frecuente de madrugada.',createdAt:nowTs-12*dayMs},
- {id:3,name:'Classic Five',players:['CARRY','OFFLANE','ROAMER'],desc:'Primer registro del archivo.',createdAt:nowTs-14*dayMs}
-];
+let teams=[];
 
 let posts=[];
 let pending=[];
+let primaryPendingIndex=0;
+let editingPostIdValue=0;
 let logged=false;
 let viewer={items:[],i:0,title:''};
 let teamsPage=0;
 const teamsPerPage=3;
-let editingPost=null;
-let publishBusy=false;
-let pendingCoverKey=null;
-let existingCoverId=null;
 
 function teamById(id){return teams.find(t=>t.id===Number(id))}
 function splitNicks(v){return v.split(',').map(x=>x.trim()).filter(Boolean)}
@@ -329,36 +286,17 @@ function prettyDate(s){
   return `${d} ${mon} ${y}`;
 }
 
-function setGalleryIndex(root,index){
-  const gs=[...root.querySelectorAll('.gslide')];
-  if(!gs.length)return;
-  const safe=(index+gs.length)%gs.length;
-  gs.forEach((g,i)=>g.classList.toggle('active',i===safe));
-  root.dataset.galleryIndex=String(safe);
-}
-function stopGalleryAuto(root){
-  if(root?._autoTimer){clearInterval(root._autoTimer);root._autoTimer=null;}
-}
-function startGalleryAuto(root){
-  stopGalleryAuto(root);
-  const gs=[...root.querySelectorAll('.gslide')];
-  if(gs.length<2)return;
-  root._autoTimer=setInterval(()=>{
-    const i=Number(root.dataset.galleryIndex||0);
-    setGalleryIndex(root,i+1);
-  },8000);
-}
 function moveGallery(btn,dir){
   const root=btn.closest('[data-gallery]');
-  if(!root)return;
-  stopGalleryAuto(root);
-  const i=Number(root.dataset.galleryIndex||0);
-  setGalleryIndex(root,i+dir);
-  setTimeout(()=>startGalleryAuto(root),1200);
+  const gs=[...root.querySelectorAll('.gslide')];
+  if(gs.length<2)return;
+  let i=gs.findIndex(x=>x.classList.contains('active'));
+  gs[i].classList.remove('active');
+  i=(i+dir+gs.length)%gs.length;
+  gs[i].classList.add('active');
 }
 
 function renderTeams(){
-  document.querySelectorAll('[data-gallery]').forEach(stopGalleryAuto);
   const ordered=sortedTeams();
   const pages=Math.max(1,Math.ceil(ordered.length/teamsPerPage));
   if(teamsPage>=pages)teamsPage=pages-1;
@@ -369,7 +307,7 @@ function renderTeams(){
 
   visible.forEach(t=>{
     const tp=posts.filter(p=>p.teamId===t.id).sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
-    const media=tp.flatMap(p=>[...p.media].sort((a,b)=>(a.sortOrder??0)-(b.sortOrder??0)).map(m=>({...m,post:p})));
+    const media=tp.flatMap(p=>p.media.map(m=>({...m,post:p})));
     const latest=tp[0];
 
     const article=document.createElement('article');
@@ -388,7 +326,7 @@ function renderTeams(){
     }
 
     article.innerHTML=`
-      <div class="gallery ${media.length?'has-media':''}" data-gallery data-gallery-index="0">
+      <div class="gallery ${media.length?'has-media':''}" data-gallery>
         ${galleryHtml}
         <div class="gfade"></div>
         ${isNewTeam(t)?'<span class="new-badge">NUEVO</span>':''}
@@ -414,14 +352,10 @@ function renderTeams(){
     if(media.length){
       galleryEl.onclick=(e)=>{
         if(e.target.closest('button'))return;
-        const activeIndex=Number(galleryEl.dataset.galleryIndex||0);
+        const gs=[...galleryEl.querySelectorAll('.gslide')];
+        const activeIndex=Math.max(0,gs.findIndex(x=>x.classList.contains('active')));
         openViewer(media.map(x=>({type:x.type,url:x.url})),`${t.name} — evidencia`,activeIndex);
       };
-      if(media.length>1){
-        galleryEl.addEventListener('mouseenter',()=>stopGalleryAuto(galleryEl));
-        galleryEl.addEventListener('mouseleave',()=>startGalleryAuto(galleryEl));
-        startGalleryAuto(galleryEl);
-      }
     }
     teamGrid.appendChild(article);
   });
@@ -430,8 +364,29 @@ function renderTeams(){
   teamsNext.disabled=teamsPage>=pages-1;
   teamsPageInfo.textContent=`Teams ${ordered.length?teamsPage*teamsPerPage+1:0}–${Math.min((teamsPage+1)*teamsPerPage,ordered.length)} de ${ordered.length}`;
   teamsDots.innerHTML=Array.from({length:pages},(_,i)=>`<i class="${i===teamsPage?'active':''}"></i>`).join('');
+  setTimeout(restartTeamAutoGallery,0);
 }
-function moveTeamsPage(dir){teamsPage+=dir;renderTeams()}
+
+const autoGalleryTimers=new Map();
+function restartTeamAutoGallery(){
+  autoGalleryTimers.forEach(timer=>clearInterval(timer));
+  autoGalleryTimers.clear();
+  document.querySelectorAll('.gallery[data-gallery]').forEach((gallery,idx)=>{
+    const slides=[...gallery.querySelectorAll('.gslide')];
+    if(slides.length<2) return;
+    const timer=setInterval(()=>{
+      if(gallery.matches(':hover')) return;
+      let i=slides.findIndex(x=>x.classList.contains('active'));
+      if(i<0)i=0;
+      slides[i].classList.remove('active');
+      i=(i+1)%slides.length;
+      slides[i].classList.add('active');
+    },8000);
+    autoGalleryTimers.set(idx,timer);
+  });
+}
+
+function moveTeamsPage(dir){teamsPage+=dir;renderTeams();restartTeamAutoGallery()}
 
 function renderRecent(){
   const sorted=[...posts].sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
@@ -511,9 +466,7 @@ function tabAdmin(id,b){
 }
 
 function renderAdmin(){
-  const selectedTeam=pTeam?.value;
   pTeam.innerHTML=teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');
-  if(selectedTeam && teams.some(t=>String(t.id)===String(selectedTeam)))pTeam.value=selectedTeam;
   syncPlayerOptions();
 
   teamsAdminList.innerHTML=teams.map(t=>`
@@ -526,16 +479,16 @@ function renderAdmin(){
     </div>`).join('');
 
   postsAdminList.innerHTML=posts.length
-    ? [...posts].sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time)).map(p=>`
+    ? [...posts].sort((a,b)=>b.id-a.id).map(p=>`
       <div class="admin-item">
         <div><h4>#${String(p.id).padStart(3,'0')} · ${esc(teamById(p.teamId)?.name||'Team')}</h4>
         <p>${prettyDate(p.date)} · ${esc(p.time)} · ${p.media.length} archivo(s) · Players: ${esc(p.players.join(', ')||'Sin especificar')}</p></div>
-        <div class="post-edit-actions">
-          <button class="editbtn" onclick="editPostUI(${p.id})">Editar</button>
-          <button class="danger" onclick="deletePostDemo(${p.id})">Eliminar</button>
+        <div class="admin-item-actions">
+          <button class="editbtn" onclick="startEditPost(${p.id})">Editar</button>
+          <button class="danger" onclick="deletePostReal(${p.id})">Eliminar</button>
         </div>
       </div>`).join('')
-    : '<div class="note">Aún no hay publicaciones.</div>';
+    : '<div class="note">Aún no publicaste nada.</div>';
 }
 
 function syncPlayerOptions(){
@@ -582,14 +535,23 @@ function editTeamDemo(id){
   newTeamPlayers.value=t.players.join(', ');
   newTeamDesc.value=t.desc;
   saveTeamBtn.textContent='Guardar cambios';
-  cancelTeamEdit.style.display='inline-block';
+  document.getElementById('cancelTeamEditBtn').style.display='inline-block';
   newTeam.focus();
 }
 function cancelTeamEdit(){
-  editingTeamId.value='';
-  newTeam.value='';newTeamPlayers.value='';newTeamDesc.value='';
-  saveTeamBtn.textContent='+ Crear team';
-  cancelTeamEdit.style.display='none';
+  const editEl=document.getElementById('editingTeamId');
+  const nameEl=document.getElementById('newTeam');
+  const playersEl=document.getElementById('newTeamPlayers');
+  const descEl=document.getElementById('newTeamDesc');
+  const saveBtn=document.getElementById('saveTeamBtn');
+  const cancelBtn=document.getElementById('cancelTeamEditBtn');
+
+  if(editEl) editEl.value='';
+  if(nameEl) nameEl.value='';
+  if(playersEl) playersEl.value='';
+  if(descEl) descEl.value='';
+  if(saveBtn) saveBtn.textContent='+ Crear team';
+  if(cancelBtn) cancelBtn.style.display='none';
 }
 function deleteTeamDemo(id){
   if(posts.some(p=>p.teamId===id)){toast('No se puede eliminar','Primero elimina sus publicaciones de esta demo.','err');return}
@@ -609,106 +571,31 @@ function fileDuration(file){
     v.src=URL.createObjectURL(file);
   });
 }
-function updateCoverCardStyles(){
-  document.querySelectorAll('.media-card').forEach(card=>{
-    const radio=card.querySelector('input[type="radio"][name="coverChoice"]');
-    card.classList.toggle('is-cover',!!radio?.checked);
-    const badge=card.querySelector('.media-badge');
-    if(badge)badge.style.display=radio?.checked?'block':'none';
-  });
-}
-function coverChanged(value){
-  if(value?.startsWith('existing:')){existingCoverId=Number(value.split(':')[1]);pendingCoverKey=null;}
-  if(value?.startsWith('pending:')){pendingCoverKey=value.split(':')[1];existingCoverId=null;}
-  updateCoverCardStyles();
-}
-function renderPendingPreviews(){
-  previews.innerHTML='';
-  newMediaEditor.style.display=pending.length?'grid':'none';
-  pending.forEach((item,i)=>{
-    const d=document.createElement('div');d.className='media-card';
-    const isImg=item.type==='image';
-    d.innerHTML=`<span class="media-badge" style="display:none">PORTADA</span>
-      <div class="media-thumb">${item.type==='video'?`<video muted playsinline src="${item.url}"></video>`:`<img src="${item.url}">`}</div>
-      <div class="media-card-foot"><span>${item.type==='video'?'VIDEO':'FOTO'} ${i+1}</span>${isImg?`<label class="cover-choice"><input type="radio" name="coverChoice" value="pending:${item.key}" onchange="coverChanged(this.value)"> Principal</label>`:''}</div>`;
-    previews.appendChild(d);
-  });
-  if(!existingCoverId && !pendingCoverKey){
-    const firstImg=pending.find(x=>x.type==='image');
-    if(firstImg)pendingCoverKey=firstImg.key;
-  }
-  const radio=document.querySelector(`input[name="coverChoice"][value="pending:${CSS.escape(String(pendingCoverKey||''))}"]`);
-  if(radio)radio.checked=true;
-  updateCoverCardStyles();
-}
-function renderExistingMediaEditor(){
-  const items=editingPost?.media||[];
-  existingMediaGrid.innerHTML='';
-  existingMediaEditor.style.display=items.length?'grid':'none';
-  items.forEach((m,i)=>{
-    const d=document.createElement('div');d.className='media-card';
-    const isImg=m.type==='image';
-    d.innerHTML=`<span class="media-badge" style="display:none">PORTADA</span>
-      <div class="media-thumb">${m.type==='video'?`<video muted playsinline src="${m.url}"></video>`:`<img src="${m.url}">`}</div>
-      <div class="media-card-foot"><span>${m.type==='video'?'VIDEO':'FOTO'} ${i+1}</span>${isImg?`<label class="cover-choice"><input type="radio" name="coverChoice" value="existing:${m.id}" onchange="coverChanged(this.value)"> Principal</label>`:''}</div>`;
-    existingMediaGrid.appendChild(d);
-  });
-  if(items.length && !existingCoverId && !pendingCoverKey){
-    const firstImg=items.find(x=>x.type==='image');
-    if(firstImg)existingCoverId=firstImg.id;
-  }
-  const radio=document.querySelector(`input[name="coverChoice"][value="existing:${existingCoverId}"]`);
-  if(radio)radio.checked=true;
-  updateCoverCardStyles();
-}
-
 pFiles.addEventListener('change',async e=>{
-  pending=[];pendingCoverKey=null;
+  pending=[];previews.innerHTML='';primaryPendingIndex=0;
   for(const f of [...e.target.files]){
     const type=f.type.startsWith('video/')?'video':'image';
     if(type==='video'&&!await fileDuration(f)){toast('Video demasiado largo',f.name+' supera los 30 segundos.','err');continue}
     const url=URL.createObjectURL(f);
-    pending.push({type,url,file:f,key:crypto.randomUUID()});
+    pending.push({type,url,file:f});
+    const d=document.createElement('div');d.className='pv';
+    d.innerHTML=type==='video'?`<video muted playsinline src="${url}"></video>`:`<img src="${url}">`;
+    previews.appendChild(d);
   }
-  renderPendingPreviews();
+  const cards=[...previews.querySelectorAll('.pv')];
+  cards.forEach((card,i)=>{
+    card.onclick=()=>{
+      primaryPendingIndex=i;
+      cards.forEach((c,j)=>c.classList.toggle('primary-selected',j===i));
+    };
+  });
+  if(cards.length){
+    cards[0].classList.add('primary-selected');
+    primaryPicker.style.display='block';
+  }else{
+    primaryPicker.style.display='none';
+  }
 });
-
-function setAdminProgress(text,type='busy'){
-  adminProgress.textContent=text;
-  adminProgress.className=`admin-progress show ${type}`;
-}
-function clearAdminProgress(){adminProgress.className='admin-progress';adminProgress.textContent='';}
-function startNewPost(btn=publishTabBtn){
-  resetPostForm();
-  tabAdmin('publish',btn);
-}
-function resetPostForm(){
-  editingPost=null;editingPostId.value='';existingCoverId=null;pendingCoverKey=null;
-  pending.forEach(x=>{try{URL.revokeObjectURL(x.url)}catch(e){}});pending=[];
-  pFiles.value='';previews.innerHTML='';existingMediaGrid.innerHTML='';
-  existingMediaEditor.style.display='none';newMediaEditor.style.display='none';
-  pDesc.value='';pPlayersManual.value='';
-  document.querySelector('input[name="playerMode"][value="saved"]').checked=true;
-  togglePlayerMode();syncPlayerOptions();
-  const dt=new Date();pDate.value=dt.toISOString().slice(0,10);pTime.value=dt.toTimeString().slice(0,5);
-  publishModeNote.className='admin-mode-banner';publishModeNote.innerHTML='<b>Nueva publicación</b><br>Completa los datos, adjunta evidencias y elige la foto que aparecerá primero en TEAMS COGOTEADOS.';
-  publishBtn.textContent='Publicar victoria';publishBtn.disabled=false;cancelPostEditBtn.style.display='none';clearAdminProgress();
-}
-function editPostUI(id){
-  const p=posts.find(x=>Number(x.id)===Number(id));if(!p)return;
-  editingPost=p;editingPostId.value=p.id;pending=[];pendingCoverKey=null;existingCoverId=null;pFiles.value='';previews.innerHTML='';newMediaEditor.style.display='none';
-  tabAdmin('publish',publishTabBtn);
-  pTeam.value=String(p.teamId);syncPlayerOptions();
-  document.querySelector('input[name="playerMode"][value="manual"]').checked=true;togglePlayerMode();pPlayersManual.value=p.players.join(', ');
-  pDate.value=p.date;pTime.value=p.time;pDesc.value=p.desc||'';
-  const firstImg=[...p.media].sort((a,b)=>(a.sortOrder??0)-(b.sortOrder??0)).find(x=>x.type==='image');
-  if(firstImg)existingCoverId=firstImg.id;
-  renderExistingMediaEditor();
-  publishModeNote.className='admin-mode-banner editing';publishModeNote.innerHTML=`<b>Editando publicación #${String(p.id).padStart(3,'0')}</b><br>Puedes corregir team, fecha, hora, players, descripción, añadir archivos y cambiar la foto principal.`;
-  publishBtn.textContent='Guardar cambios';cancelPostEditBtn.style.display='inline-block';clearAdminProgress();
-  document.querySelector('#adminModal .box')?.scrollTo({top:0,behavior:'smooth'});
-}
-function cancelPostEdit(){resetPostForm();tabAdmin('postsPane',document.querySelectorAll('.admin-tab')[2]);}
 
 function publishDemo(){
   const teamId=Number(pTeam.value),date=pDate.value,time=pTime.value||'00:00';
@@ -840,12 +727,9 @@ async function loadAllFromSupabase(){
       time:when.toTimeString().slice(0,5),
       players:p.players||[],
       desc:p.description||'',
-      media:(md||[]).filter(m=>m.post_id===p.id).sort((a,b)=>(a.sort_order??0)-(b.sort_order??0)).map(m=>({
-        id:m.id,
+      media:(md||[]).filter(m=>m.post_id===p.id).map(m=>({
         type:m.media_type,
-        url:m.public_url,
-        storagePath:m.storage_path,
-        sortOrder:m.sort_order??0
+        url:m.public_url
       }))
     }
   });
@@ -854,188 +738,306 @@ async function loadAllFromSupabase(){
   renderPublic();
 }
 
-function orderedPendingItems(){
-  const arr=[...pending];
-  if(pendingCoverKey){
-    arr.sort((a,b)=>a.key===pendingCoverKey?-1:b.key===pendingCoverKey?1:0);
-  }else{
-    const idx=arr.findIndex(x=>x.type==='image');
-    if(idx>0){const [x]=arr.splice(idx,1);arr.unshift(x);}
-  }
-  return arr;
-}
-async function uploadMediaFiles(postId,startOrder=0,items=orderedPendingItems()){
+async function uploadMediaFiles(postId){
   const uploaded=[];
-  let order=startOrder;
-  for(const item of items){
+  const ordered=[...pending];
+  if(ordered.length>1 && primaryPendingIndex>0 && primaryPendingIndex<ordered.length){
+    const [primary]=ordered.splice(primaryPendingIndex,1);
+    ordered.unshift(primary);
+  }
+  let order=0;
+  for(const item of ordered){
     const ext=(item.file?.name?.split('.').pop()||'bin').toLowerCase();
     const path=`${postId}/${crypto.randomUUID()}.${ext}`;
     const {error:upErr}=await sb.storage.from(STORAGE_BUCKET).upload(path,item.file,{
-      cacheControl:'3600',upsert:false,contentType:item.file.type
+      cacheControl:'3600',
+      upsert:false,
+      contentType:item.file.type
     });
     if(upErr) throw upErr;
     const {data:pub}=sb.storage.from(STORAGE_BUCKET).getPublicUrl(path);
     const url=pub.publicUrl;
-    const {data:row,error:dbErr}=await sb.from('media').insert({
-      post_id:postId,storage_path:path,public_url:url,media_type:item.type,sort_order:order++
-    }).select().single();
+    const {error:dbErr}=await sb.from('media').insert({
+      post_id:postId,
+      storage_path:path,
+      public_url:url,
+      media_type:item.type,
+      sort_order:order++
+    });
     if(dbErr) throw dbErr;
-    uploaded.push({id:row.id,type:item.type,url,storagePath:path,sortOrder:row.sort_order});
+    uploaded.push({type:item.type,url});
   }
   return uploaded;
 }
-async function reorderExistingMedia(post){
-  const existing=[...(post?.media||[])];
-  if(!existing.length)return [];
-  let ordered=[...existing];
-  if(existingCoverId){ordered.sort((a,b)=>Number(a.id)===Number(existingCoverId)?-1:Number(b.id)===Number(existingCoverId)?1:(a.sortOrder??0)-(b.sortOrder??0));}
-  else ordered.sort((a,b)=>(a.sortOrder??0)-(b.sortOrder??0));
-  const offset=pendingCoverKey?1:0;
-  for(let i=0;i<ordered.length;i++){
-    const desired=i+offset;
-    if(Number(ordered[i].sortOrder)!==desired){
-      const {error}=await sb.from('media').update({sort_order:desired}).eq('id',ordered[i].id);
-      if(error)throw error;
-      ordered[i].sortOrder=desired;
-    }
-  }
-  return ordered;
+
+
+function startEditPost(id){
+  const p=posts.find(x=>x.id===Number(id));
+  if(!p) return toastMsg('No se encontró la publicación.','error');
+
+  editingPostIdValue=p.id;
+  const hidden=document.getElementById('editingPostId');
+  if(hidden) hidden.value=p.id;
+
+  pTeam.value=p.teamId;
+  syncPlayerOptions();
+
+  pDate.value=p.date;
+  pTime.value=p.time||'00:00';
+  pDesc.value=p.desc||'';
+
+  const manualRadio=document.querySelector('input[name="playerMode"][value="manual"]');
+  if(manualRadio) manualRadio.checked=true;
+  togglePlayerMode();
+  pPlayersManual.value=(p.players||[]).join(', ');
+
+  pending=[];
+  previews.innerHTML='';
+  primaryPicker.style.display='none';
+
+  const publishBtn=document.querySelector('#publish .actions .primary');
+  if(publishBtn) publishBtn.textContent='Guardar cambios';
+
+  document.querySelectorAll('.admin-pane').forEach(x=>x.classList.remove('active'));
+  document.getElementById('publish').classList.add('active');
+  document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));
+  document.querySelector('.admin-tab')?.classList.add('active');
+
+  toastMsg('Editando publicación #'+String(p.id).padStart(3,'0'),'ok');
+}
+
+function resetPostEditor(){
+  editingPostIdValue=0;
+  const hidden=document.getElementById('editingPostId');
+  if(hidden) hidden.value='';
+  pending=[];
+  primaryPendingIndex=0;
+  pFiles.value='';
+  previews.innerHTML='';
+  primaryPicker.style.display='none';
+  pPlayersManual.value='';
+  pDesc.value='';
+  const publishBtn=document.querySelector('#publish .actions .primary');
+  if(publishBtn) publishBtn.textContent='Publicar victoria';
 }
 
 async function publishReal(){
-  if(publishBusy)return;
   if(!await ensureBackendReady()) return;
-  const teamId=Number(pTeam.value),date=pDate.value,time=pTime.value||'00:00';
-  if(!teamId||!date){toast('Faltan datos','Selecciona team y fecha.','err');return;}
 
-  publishBusy=true;publishBtn.disabled=true;
-  const isEdit=!!editingPost;
-  publishBtn.textContent=isEdit?'Guardando...':'Publicando...';
-  setAdminProgress(isEdit?'Guardando cambios de la publicación...':'Publicando victoria y subiendo evidencias...','busy');
+  const publishBtn=document.querySelector('#publish .actions .primary');
+  if(publishBtn?.disabled) return;
+
+  const teamId=Number(pTeam.value);
+  const date=pDate.value;
+  const time=pTime.value||'00:00';
+  if(!teamId||!date) return toastMsg('Selecciona team y fecha.','error');
+
+  const players=selectedPlayers();
+  const playedAt=new Date(`${date}T${time}:00`).toISOString();
+  const existingId=Number(document.getElementById('editingPostId')?.value||editingPostIdValue||0);
+
+  if(publishBtn){
+    publishBtn.disabled=true;
+    publishBtn.textContent=existingId?'Guardando cambios...':'Publicando...';
+  }
 
   try{
-    const players=selectedPlayers();
-    const playedAt=new Date(`${date}T${time}:00`).toISOString();
-    const payload={team_id:teamId,played_at:playedAt,players,description:pDesc.value.trim()||'Victoria registrada.'};
-    let row;
+    if(existingId){
+      const {error:updateErr}=await sb.from('posts').update({
+        team_id:teamId,
+        played_at:playedAt,
+        players,
+        description:pDesc.value.trim()||'Victoria registrada.'
+      }).eq('id',existingId);
 
-    if(isEdit){
-      const {data,error}=await sb.from('posts').update(payload).eq('id',editingPost.id).select().single();
-      if(error)throw error;row=data;
-      const existingOrdered=await reorderExistingMedia(editingPost);
-      let uploaded=[];
-      let combined=[];
-      if(pendingCoverKey){
-        const orderedNew=orderedPendingItems();
-        const coverItem=orderedNew[0];
-        const rest=orderedNew.slice(1);
-        const coverUploaded=coverItem?await uploadMediaFiles(row.id,0,[coverItem]):[];
-        const restUploaded=rest.length?await uploadMediaFiles(row.id,1+existingOrdered.length,rest):[];
-        uploaded=[...coverUploaded,...restUploaded];
-        combined=[...coverUploaded,...existingOrdered,...restUploaded];
-      }else{
-        uploaded=await uploadMediaFiles(row.id,existingOrdered.length);
-        combined=[...existingOrdered,...uploaded];
+      if(updateErr) throw updateErr;
+
+      if(pending.length){
+        const {data:oldMedia,error:mediaErr}=await sb.from('media').select('storage_path').eq('post_id',existingId);
+        if(mediaErr) throw mediaErr;
+        if(oldMedia?.length){
+          const {error:removeErr}=await sb.storage.from(STORAGE_BUCKET).remove(oldMedia.map(x=>x.storage_path));
+          if(removeErr) throw removeErr;
+        }
+        const {error:deleteMediaErr}=await sb.from('media').delete().eq('post_id',existingId);
+        if(deleteMediaErr) throw deleteMediaErr;
+        await uploadMediaFiles(existingId);
       }
-      const idx=posts.findIndex(x=>Number(x.id)===Number(row.id));
-      const local={id:row.id,teamId,date,time,players,desc:payload.description,media:combined};
-      if(idx>=0)posts[idx]=local;else posts.push(local);
+
+      resetPostEditor();
+      await loadAllFromSupabase();
+      renderPublic();
+      renderAdmin();
+      toastMsg('Publicación actualizada correctamente.','ok');
     }else{
-      const {data,error}=await sb.from('posts').insert(payload).select().single();
-      if(error)throw error;row=data;
-      let uploaded=[];
-      try{uploaded=await uploadMediaFiles(row.id,0);}catch(e){
-        await sb.from('media').delete().eq('post_id',row.id);
-        await sb.from('posts').delete().eq('id',row.id);
+      const {data,error}=await sb.from('posts').insert({
+        team_id:teamId,
+        played_at:playedAt,
+        players,
+        description:pDesc.value.trim()||'Victoria registrada.'
+      }).select().single();
+
+      if(error) throw error;
+
+      try{
+        await uploadMediaFiles(data.id);
+      }catch(e){
+        await sb.from('posts').delete().eq('id',data.id);
         throw e;
       }
-      posts.unshift({id:row.id,teamId,date,time,players,desc:payload.description,media:uploaded});
-    }
 
-    teamsPage=0;renderAdmin();renderPublic();
-    setAdminProgress(isEdit?'Cambios guardados correctamente.':'Victoria publicada correctamente.','ok');
-    toast(isEdit?'Publicación actualizada':'Cogote publicado',isEdit?'Los cambios ya se reflejan en Teams Cogoteados y Recientes Cogotes.':'La victoria ya aparece en Teams Cogoteados y Recientes Cogotes.','ok');
-    resetPostForm();
-    // Sin bloquear la interfaz: sincronización final con el servidor.
-    setTimeout(()=>loadAllFromSupabase().catch(console.error),250);
-    if(!isEdit){closeAdmin();setTimeout(()=>document.getElementById('victorias')?.scrollIntoView({behavior:'smooth',block:'start'}),80);}
-    else tabAdmin('postsPane',document.querySelectorAll('.admin-tab')[2]);
+      resetPostEditor();
+      await loadAllFromSupabase();
+      renderPublic();
+      renderAdmin();
+      toastMsg('Cogote publicado correctamente.','ok');
+    }
   }catch(e){
-    console.error(e);setAdminProgress('No se pudo guardar: '+(e.message||e),'err');toast('No se guardó',e.message||String(e),'err');
+    console.error(e);
+    toastMsg((existingId?'No se pudo actualizar: ':'No se pudo publicar: ')+(e.message||e),'error');
   }finally{
-    publishBusy=false;publishBtn.disabled=false;
-    if(editingPost)publishBtn.textContent='Guardar cambios';else publishBtn.textContent='Publicar victoria';
+    if(publishBtn){
+      publishBtn.disabled=false;
+      publishBtn.textContent=Number(document.getElementById('editingPostId')?.value||0)?'Guardar cambios':'Publicar victoria';
+    }
   }
 }
 
 async function saveTeamReal(){
   if(!await ensureBackendReady()) return;
-  const name=(newTeam.value||'').trim();
-  if(!name){toast('Falta el nombre','Escribe un nombre para el team.','err');return;}
+
+  const nameEl=document.getElementById('newTeam');
+  const playersEl=document.getElementById('newTeamPlayers');
+  const descEl=document.getElementById('newTeamDesc');
+  const editEl=document.getElementById('editingTeamId');
   const saveBtn=document.getElementById('saveTeamBtn');
-  if(saveBtn.disabled)return;
-  saveBtn.disabled=true;const oldLabel=saveBtn.textContent;saveBtn.textContent='Guardando...';
-  setAdminProgress('Guardando team...','busy');
-  try{
-    const {data:{session}}=await sb.auth.getSession();
-    if(!session)throw new Error('Tu sesión ADMIN no está activa.');
-    const {data:profile,error:profileError}=await sb.from('profiles').select('is_admin').eq('id',session.user.id).single();
-    if(profileError||!profile?.is_admin)throw new Error('Esta cuenta no tiene permisos de administrador.');
-    const payload={name,players:splitNicks(newTeamPlayers.value||''),description:(newTeamDesc.value||'').trim()||'Team registrado.'};
-    const id=Number(editingTeamId.value||0);
-    const result=id?await sb.from('teams').update(payload).eq('id',id).select().single():await sb.from('teams').insert(payload).select().single();
-    if(result.error)throw result.error;
-    const row=result.data;
-    const local={id:row.id,name:row.name,players:row.players||[],desc:row.description||'',createdAt:new Date(row.created_at||Date.now()).getTime()};
-    if(id){const i=teams.findIndex(x=>Number(x.id)===Number(id));if(i>=0)teams[i]=local;else teams.unshift(local);}else teams.unshift(local);
-    cancelTeamEdit();teamsPage=0;renderAdmin();renderPublic();
-    setAdminProgress(id?'Team actualizado correctamente.':'Team creado correctamente.','ok');
-    toast(id?'Team actualizado':'Team creado',`${name} ya aparece actualizado en Teams Cogoteados.`,'ok','VER TEAM',()=>revealSection('teams'));
-    setTimeout(()=>loadAllFromSupabase().catch(console.error),250);
-  }catch(e){console.error(e);setAdminProgress('No se pudo guardar: '+(e.message||e),'err');toast('No se guardó el team',e.message||String(e),'err');}
-  finally{saveBtn.disabled=false;saveBtn.textContent=editingTeamId.value?'Guardar cambios':'+ Crear team';if(!editingTeamId.value)saveBtn.textContent='+ Crear team';}
+
+  const name=(nameEl?.value||'').trim();
+  if(!name) return toastMsg('Escribe un nombre para el team.','error');
+
+  const {data:{session},error:sessionError}=await sb.auth.getSession();
+  if(sessionError || !session){
+    return toastMsg('Tu sesión ADMIN no está activa. Cierra sesión e ingresa nuevamente.','error');
+  }
+
+  const {data:profile,error:profileError}=await sb
+    .from('profiles')
+    .select('is_admin')
+    .eq('id',session.user.id)
+    .single();
+
+  if(profileError || !profile?.is_admin){
+    return toastMsg('Esta cuenta no tiene permisos is_admin=true.','error');
+  }
+
+  const payload={
+    name,
+    players:splitNicks(playersEl?.value||''),
+    description:(descEl?.value||'').trim()||'Team registrado.'
+  };
+
+  const id=Number(editEl?.value||0);
+
+  if(saveBtn){
+    saveBtn.disabled=true;
+    saveBtn.textContent=id?'Guardando cambios...':'Creando team...';
+  }
+
+  const result=id
+    ? await sb.from('teams').update(payload).eq('id',id).select().single()
+    : await sb.from('teams').insert(payload).select().single();
+
+  if(saveBtn){
+    saveBtn.disabled=false;
+    saveBtn.textContent=id?'Guardar cambios':'+ Crear team';
+  }
+
+  if(result.error){
+    console.error('Supabase teams write error:',result.error);
+    return toastMsg('No se pudo guardar: '+result.error.message,'error');
+  }
+
+  cancelTeamEdit();
+  await loadAllFromSupabase();
+  renderPublic();
+  renderAdmin();
+  toastMsg(id?'Team actualizado correctamente.':'Team creado correctamente.','ok');
 }
 
-function confirmAction(title,message,confirmLabel='Eliminar'){
-  return new Promise(resolve=>{
-    confirmTitle.textContent=title;confirmMessage.textContent=message;confirmOkBtn.textContent=confirmLabel;
-    confirmModal.classList.add('open');
-    const done=value=>{confirmModal.classList.remove('open');confirmOkBtn.onclick=null;confirmCancelBtn.onclick=null;resolve(value)};
-    confirmOkBtn.onclick=()=>done(true);confirmCancelBtn.onclick=()=>done(false);
-  });
-}
 async function deleteTeamReal(id){
-  const t=teamById(id);if(!t)return;
-  if(!await confirmAction('Eliminar team',`¿Eliminar ${t.name}? Solo es posible si no tiene publicaciones.`))return;
-  try{
-    const {error}=await sb.from('teams').delete().eq('id',id);if(error)throw error;
-    teams=teams.filter(x=>Number(x.id)!==Number(id));teamsPage=0;renderAdmin();renderPublic();
-    toast('Team eliminado',`${t.name} fue eliminado correctamente.`,'ok');
-    setTimeout(()=>loadAllFromSupabase().catch(console.error),250);
-  }catch(e){toast('No se pudo eliminar',e.message||String(e),'err');}
+  if(!await confirmInside('¿Eliminar este team?')) return;
+  const {error}=await sb.from('teams').delete().eq('id',id);
+  if(error) return toastMsg('No se pudo eliminar: '+error.message,'error');
+  await loadAllFromSupabase();
+  renderPublic();
+  renderAdmin();
+  toastMsg('Team eliminado correctamente.','ok');
 }
+
 async function deletePostReal(id){
-  const p=posts.find(x=>Number(x.id)===Number(id));if(!p)return;
-  const teamName=teamById(p.teamId)?.name||'el team';
-  if(!await confirmAction('Eliminar publicación',`Se eliminará esta victoria, sus fotos/clips y también desaparecerá inmediatamente de ${teamName} en TEAMS COGOTEADOS.`))return;
-  try{
-    setAdminProgress('Eliminando publicación y archivos...','busy');
-    const {data:m,error:readErr}=await sb.from('media').select('id,storage_path').eq('post_id',id);if(readErr)throw readErr;
-    if(m?.length){
-      const paths=m.map(x=>x.storage_path).filter(Boolean);if(paths.length){const {error:stErr}=await sb.storage.from(STORAGE_BUCKET).remove(paths);if(stErr)console.warn('Storage remove:',stErr)}
-      const {error:mediaErr}=await sb.from('media').delete().eq('post_id',id);if(mediaErr)throw mediaErr;
-    }
-    const {error}=await sb.from('posts').delete().eq('id',id);if(error)throw error;
-    posts=posts.filter(x=>Number(x.id)!==Number(id));teamsPage=0;renderAdmin();renderPublic();
-    setAdminProgress('Publicación eliminada correctamente.','ok');
-    toast('Publicación eliminada','Ya fue retirada de Recientes Cogotes y de la tarjeta del team.','ok');
-    setTimeout(()=>loadAllFromSupabase().catch(console.error),250);
-  }catch(e){console.error(e);setAdminProgress('No se pudo eliminar: '+(e.message||e),'err');toast('No se pudo eliminar',e.message||String(e),'err');}
+  if(!await confirmInside('¿Eliminar esta publicación y sus archivos?')) return;
+
+  const {data:m,error:mediaErr}=await sb.from('media').select('storage_path').eq('post_id',id);
+  if(mediaErr) return toastMsg('No se pudo leer la evidencia: '+mediaErr.message,'error');
+
+  if(m?.length){
+    const {error:removeErr}=await sb.storage.from(STORAGE_BUCKET).remove(m.map(x=>x.storage_path));
+    if(removeErr) return toastMsg('No se pudieron borrar los archivos: '+removeErr.message,'error');
+  }
+
+  const {error}=await sb.from('posts').delete().eq('id',id);
+  if(error) return toastMsg('No se pudo eliminar: '+error.message,'error');
+
+  await loadAllFromSupabase();
+  renderPublic();
+  renderAdmin();
+  toastMsg('Publicación eliminada correctamente.','ok');
 }
 
 function toastMsg(msg,type='ok'){
-  const bad=type==='error'||type==='err';
-  toast(bad?'Error':'Listo',msg,bad?'err':(type==='info'?'info':'ok'));
+  let box=document.getElementById('siteToast');
+  if(!box){
+    box=document.createElement('div');box.id='siteToast';
+    box.style.cssText='position:fixed;right:18px;bottom:18px;z-index:9999;max-width:360px;padding:13px 16px;background:#111820;border:1px solid #36414d;color:#e6e9ed;font:12px Arial;box-shadow:0 14px 35px rgba(0,0,0,.45);border-radius:4px';
+    document.body.appendChild(box);
+  }
+  box.style.borderColor=type==='error'?'#8f3430':'#2f7544';
+  box.textContent=msg;
+  box.style.display='block';
+  clearTimeout(box._t);
+  box._t=setTimeout(()=>box.style.display='none',3600);
+}
+function confirmInside(msg){
+  return new Promise(resolve=>{
+    let modal=document.getElementById('confirmModal');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.id='confirmModal';
+      modal.className='modal';
+      modal.innerHTML=`
+        <div class="box" style="max-width:460px">
+          <h3>Confirmar acción</h3>
+          <p id="confirmText" style="color:#aeb6c2;line-height:1.55"></p>
+          <div class="actions">
+            <button id="confirmNo">Cancelar</button>
+            <button id="confirmYes" class="primary">Confirmar</button>
+          </div>
+        </div>`;
+      document.body.appendChild(modal);
+    }
+    document.getElementById('confirmText').textContent=msg;
+    modal.classList.add('open');
+    const yes=document.getElementById('confirmYes');
+    const no=document.getElementById('confirmNo');
+    const done=(v)=>{
+      modal.classList.remove('open');
+      yes.onclick=null;
+      no.onclick=null;
+      resolve(v);
+    };
+    yes.onclick=()=>done(true);
+    no.onclick=()=>done(false);
+  });
 }
 
 async function initSupabaseAuth(){
@@ -1052,13 +1054,11 @@ async function initSupabaseAuth(){
     }
   }
   await loadAllFromSupabase();
-  if(!editingPost)resetPostForm();
 }
 
 /* Replace demo handlers with real backend handlers */
 window.deleteTeamDemo=deleteTeamReal;
 window.deletePostDemo=deletePostReal;
-window.editPostUI=editPostUI;
 
 initSupabaseAuth();
 </script>
